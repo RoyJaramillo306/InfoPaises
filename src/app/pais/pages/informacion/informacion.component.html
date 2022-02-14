@@ -1,0 +1,62 @@
+
+<div *ngIf="!pais; else divPais" class="alert alert-info">
+    La información se está cargando, espere por favor..
+</div>
+
+<ng-template #divPais>
+
+    <div class="p row">
+        <div class="col-12">
+            <h1>Pais: <small> {{ pais.name }} </small></h1>
+        </div>
+    </div><br>
+
+    <div class="row">
+
+        <div class="c col-4">
+            <h3>Bandera</h3><br>
+            <img class="medium-flag" [src]="pais.flag">
+        </div>
+
+        <div class="col">
+            <h3>Información</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Población: </strong> {{ pais.population | number }} </li>
+                <li class="list-group-item"><strong>Código numérico: </strong> {{ pais.numericCode }} </li>
+                <li class="list-group-item"><strong>Área: </strong> {{ pais.area | number }} m2 </li>
+                <li class="list-group-item"><strong>Región: </strong> {{ pais.region }} </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="trad col"><br>
+            <strong>Traducciones:  </strong><span class="badge bg-info mr-1"> {{ pais.translations.de }} </span>
+            <span class="badge bg-info mr-1"> {{ pais.translations.es }} </span>
+            <span class="badge bg-info mr-1"> {{ pais.translations.fr }} </span>
+            <span class="badge bg-info mr-1"> {{ pais.translations.ja }} </span>
+            <span class="badge bg-info mr-1"> {{ pais.translations.it }} </span>
+            <span class="badge bg-info mr-1"> {{ pais.translations.br }} </span>
+            <span class="badge bg-info mr-1"> {{ pais.translations.nl }} </span>
+            <span class="badge bg-info mr-1"> {{ pais.translations.hr }} </span>
+            <span class="badge bg-info mr-1"> {{ pais.translations.fa }} </span>
+        </div>
+    </div><hr>
+
+    <div class="row">
+
+        <div *ngFor="let gif of resultados" class="col-md-4 col-sm-6 animate__animated animate__fadeInDown animate__slow"><br>
+
+            <div class="card">
+                <img [src]="gif.images.downsized_medium.url" [alt]="gif.title" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text">{{ gif.title }}</p> 
+                </div>
+            </div>
+    
+         </div>
+   
+    </div>
+
+</ng-template>

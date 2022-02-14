@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+.small-flag{
+    width: 50px;
+}
+
+th, td{
+    text-align: center;
+}
+
+.medium-flag{
+    width: 150px;
+}

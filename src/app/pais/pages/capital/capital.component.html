@@ -1,0 +1,24 @@
+<h2>Por Capital</h2><hr>
+
+<div class="row">
+    <div class="col">
+        <app-pais-input (onEnter)="buscar( $event )" placeholder="Buscar capital.." (onFiltro)="sugerencias($event)"></app-pais-input>
+        <ul *ngIf="mostrar" class="list-group">
+            <li *ngFor="let sugerencia of listado" class="list-group-item list-group-item-action" > 
+                <a [routerLink]="['/pais',sugerencia.cca2]" class="nav-link">{{ sugerencia.capital }}</a></li>
+            <li class="list-group-item list-group-item-action" ><a (click)="mostrarSugerencia(termino)" class="nav-link">Buscar "{{ termino }}"</a></li>
+        </ul>
+    </div>
+</div> <hr>
+
+<div *ngIf="hayError" class="alert alert-danger">
+    No se encontró algún país con el nombre {{termino}}
+</div>
+
+<div *ngIf="paises.length>0" class="row">
+    <div class="container col-9"> 
+
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
+
+    </div>
+</div>

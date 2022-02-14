@@ -1,0 +1,42 @@
+<h3>Buscar por regiones: <small> {{ regionActiva | titlecase }} </small></h3><hr>
+
+<h5>Seleccione la región</h5>
+<div class="row">
+    <div class="col">
+        <button (click)="activarRegion(region)" [class]="getRegion(region)" *ngFor="let region of regiones"> {{ region | titlecase }} </button>
+    </div>
+</div><hr>
+
+<div *ngIf="regionActiva.length>0" class="row">
+    <div class="container col-9"> 
+
+        <div class="row">
+
+            <div class="idiom col">
+
+                <h4>Seleccione un idioma para filtrar en la región</h4>
+                <button 
+                    (click)="activarIdiomas(idio)" [class]="getIdioma(idio)" *ngFor="let idio of idiomas"> {{ idio | titlecase }} </button><br>
+
+                <div *ngIf="idiomaActivo.length>0; else divFiltro">
+
+                    <div *ngIf="paisesFiltro.length>0; else divVacio">
+                        <app-pais-tabla [paises]="paisesFiltro"></app-pais-tabla>
+                    </div>
+
+                    <ng-template #divVacio><br>
+                        <h3>No se encontraron países con el idioma {{ idiomaActivo | titlecase }} en la región {{ regionActiva | titlecase }} </h3>
+                    </ng-template> 
+
+                </div>
+
+            </div>
+
+            <ng-template #divFiltro>
+                <app-pais-tabla [paises]="paises"></app-pais-tabla>
+            </ng-template>
+
+        </div><br>
+
+    </div>
+</div>
